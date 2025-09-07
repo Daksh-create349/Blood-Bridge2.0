@@ -8,7 +8,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, children }: PageHeaderProps) {
   return (
-    <div className="flex items-center justify-between gap-4 p-6 border-b border-border bg-card">
+    <div className="flex items-center justify-between gap-4 p-6 border-b border-border bg-background/50 backdrop-blur-sm sticky top-0 z-20">
       <div>
         <h1 className="text-3xl font-bold font-headline tracking-tight">{title}</h1>
         {description && <p className="text-muted-foreground mt-1">{description}</p>}

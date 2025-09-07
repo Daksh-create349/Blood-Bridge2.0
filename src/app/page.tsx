@@ -5,27 +5,20 @@ import Link from 'next/link';
 
 export default function WelcomePage() {
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
-        src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"
-      />
-      <div className="absolute top-0 left-0 w-full h-full bg-black/70 -z-10" />
-      
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background">
+      <div className="absolute inset-0 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div>
+
       <main className="text-center text-white p-4 z-10 flex flex-col items-center">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight">
+        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
           Welcome to Blood Bridge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-foreground/80 font-light">
-          Bridging the gap between need & donor.
+        <p className="mt-4 text-lg md:text-xl text-neutral-300 font-light max-w-2xl">
+          Bridging the gap between need & donor. Instantly connect with a network of hospitals and donors to save lives when it matters most.
         </p>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
-          <Card className="bg-card/80 backdrop-blur-sm border-border/50 text-card-foreground transform hover:scale-105 transition-transform duration-300">
+          <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground transform hover:scale-105 transition-transform duration-300">
             <CardHeader>
               <CardTitle className="font-headline text-2xl">For Hospitals</CardTitle>
               <CardDescription>Urgently need blood? Alert donors now.</CardDescription>
@@ -38,7 +31,7 @@ export default function WelcomePage() {
               </Link>
             </CardContent>
           </Card>
-          <Card className="bg-card/80 backdrop-blur-sm border-border/50 text-card-foreground transform hover:scale-105 transition-transform duration-300">
+          <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground transform hover:scale-105 transition-transform duration-300">
             <CardHeader>
               <CardTitle className="font-headline text-2xl">For Donors</CardTitle>
               <CardDescription>See who needs your help right now.</CardDescription>

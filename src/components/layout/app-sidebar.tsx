@@ -44,7 +44,7 @@ export default function AppSidebar() {
   const isLinkActive = (href: string) => pathname === href;
 
   return (
-    <aside className="w-64 flex-shrink-0 border-r border-border bg-card p-4 flex flex-col">
+    <aside className="w-64 flex-shrink-0 border-r border-border bg-background/50 backdrop-blur-sm p-4 flex flex-col">
       <div className="flex items-center gap-3 px-2 mb-6">
         <BloodDropIcon className="h-8 w-8 text-primary" />
         <h2 className="text-xl font-bold font-headline text-primary-foreground">
