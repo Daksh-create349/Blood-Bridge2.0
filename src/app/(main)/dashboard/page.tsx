@@ -13,9 +13,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import BloodDropIcon from "@/components/icons/blood-drop-icon";
+import { Button } from "@/components/ui/button";
+import { UpdateStockDialog } from "@/components/pages/dashboard/update-stock-dialog";
 
 const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'success'> = {
   Critical: 'destructive',
@@ -23,7 +25,7 @@ const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'succes
   Available: 'success',
 };
 
-function ResourceCard({ resource }: { resource: BloodResource }) {
+function ResourceCard({ resource, onUpdateClick }: { resource: BloodResource, onUpdateClick: (resource: BloodResource) => void }) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -37,14 +39,20 @@ function ResourceCard({ resource }: { resource: BloodResource }) {
         <div className="text-2xl font-bold">{resource.quantity} units</div>
         <p className="text-xs text-muted-foreground">{resource.location}</p>
       </CardContent>
+      <CardFooter>
+        <Button variant="outline" size="sm" className="w-full" onClick={() => onUpdateClick(resource)}>
+          Update Units
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
 
 export default function DashboardPage() {
-  const [resources] = useLocalStorage<BloodResource[]>("resources", MOCK_RESOURCES);
+  const [resources, setResources] = useLocalStorage<BloodResource[]>("resources", MOCK_RESOURCES);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<ResourceStatus | "all">("all");
+  const [selectedResource, setSelectedResource] = useState<BloodResource | null>(null);
 
   const filteredResources = resources.filter((resource) => {
     const searchMatch =
@@ -56,6 +64,32 @@ export default function DashboardPage() {
 
   const criticalCount = resources.filter(r => r.status === 'Critical').length;
   const lowCount = resources.filter(r => r.status === 'Low').length;
+  
+  const handleUpdateClick = (resource: BloodResource) => {
+    setSelectedResource(resource);
+  };
+
+  const handleCloseDialog = () => {
+    setSelectedResource(null);
+  };
+
+  const handleUpdateStock = (resourceId: string, newQuantity: number) => {
+    setResources(prev => {
+      return prev.map(r => {
+        if (r.id === resourceId) {
+          let newStatus: ResourceStatus = 'Available';
+          if (newQuantity <= 5) {
+            newStatus = 'Critical';
+          } else if (newQuantity <= 20) {
+            newStatus = 'Low';
+          }
+          return { ...r, quantity: newQuantity, status: newStatus };
+        }
+        return r;
+      });
+    });
+    handleCloseDialog();
+  };
 
   return (
     <div className="flex-1 flex flex-col">
@@ -118,10 +152,15 @@ export default function DashboardPage() {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredResources.map((resource) => (
-            <ResourceCard key={resource.id} resource={resource} />
+            <ResourceCard key={resource.id} resource={resource} onUpdateClick={handleUpdateClick} />
           ))}
         </div>
       </div>
+      <UpdateStockDialog 
+        resource={selectedResource}
+        onClose={handleCloseDialog}
+        onConfirm={handleUpdateStock}
+      />
     </div>
   );
 }
