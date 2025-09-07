@@ -9,6 +9,9 @@ export const MOCK_RESOURCES: BloodResource[] = [
   { id: '6', bloodType: 'A-', quantity: 15, location: 'County Medical', status: 'Low' },
   { id: '7', bloodType: 'B-', quantity: 3, location: 'City General Hospital', status: 'Critical' },
   { id: '8', bloodType: 'AB-', quantity: 8, location: 'Red Cross Center', status: 'Low' },
+  { id: '9', bloodType: 'A+', quantity: 40, location: 'Apollo Hospital, Navi Mumbai', status: 'Available' },
+  { id: '10', bloodType: 'O+', quantity: 35, location: 'MGM Hospital, Vashi', status: 'Available' },
+  { id: '11', bloodType: 'B+', quantity: 20, location: 'Fortis Hiranandani Hospital, Vashi', status: 'Available' },
 ];
 
 export const MOCK_ACTIVE_REQUESTS: UrgentRequest[] = [
