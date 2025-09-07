@@ -40,6 +40,7 @@ export default function RootLayout({
 
   useEffect(() => {
     if (pathname === '/') {
+        setLoading(true);
         const timer = setTimeout(() => {
             setLoading(false);
         }, 3000); // Adjust the duration as needed
@@ -53,8 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${poppins.variable} font-body antialiased`}>
-        {loading && <SplashScreen />}
-        {children}
+        {loading ? <SplashScreen /> : children}
         <Toaster />
       </body>
     </html>
