@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { Metadata } from 'next';
@@ -6,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Inter, Poppins, Space_Grotesk } from 'next/font/google';
 import { useState, useEffect } from 'react';
 import SplashScreen from '@/components/layout/splash-screen';
+import { usePathname } from 'next/navigation';
 
 // export const metadata: Metadata = {
 //   title: 'Blood Bridge',
@@ -33,15 +35,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+  const [loading, setLoading] = useState(pathname === '/');
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // Adjust the duration as needed
+    if (pathname === '/') {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 3000); // Adjust the duration as needed
 
-    return () => clearTimeout(timer);
-  }, []);
+        return () => clearTimeout(timer);
+    } else {
+        setLoading(false);
+    }
+  }, [pathname]);
 
   return (
     <html lang="en" className="dark">
