@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -35,11 +36,8 @@ const AlertRecommendationSchema = z.object({
   alertScope: z
     .string()
     .describe(
-      'The recommended scope for sending out alerts (e.g., Local hospitals only, Regional blood banks, National).
-      alertScope: z
-    .string()
-    .describe(
-      'The recommended scope for sending out alerts (e.g., Local hospitals only, Regional blood banks, National).'    ),
+      'The recommended scope for sending out alerts (e.g., Local hospitals only, Regional blood banks, National).'
+    ),
   reasoning: z
     .string()
     .describe('The AI reasoning behind the alert timing and scope recommendations.'),
