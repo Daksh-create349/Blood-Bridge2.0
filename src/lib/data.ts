@@ -49,11 +49,26 @@ export const MOCK_ACTIVE_REQUESTS: UrgentRequest[] = [
 ];
 
 export const MOCK_DONORS: Donor[] = [
-  { id: 'd1', name: 'John Doe', bloodType: 'A+', location: 'Downtown', lastDonation: '2024-03-15', contact: '555-1234' },
-  { id: 'd2', name: 'Jane Smith', bloodType: 'O-', location: 'Uptown', lastDonation: '2024-05-20', contact: '555-5678' },
-  { id: 'd3', name: 'Peter Jones', bloodType: 'B+', location: 'Suburbia', lastDonation: '2024-01-10', contact: '555-9012' },
-  { id: 'd4', name: 'Mary Johnson', bloodType: 'AB+', location: 'Downtown', lastDonation: '2024-06-01', contact: '555-3456' },
-  { id: 'd5', name: 'David Williams', bloodType: 'O+', location: 'Uptown', lastDonation: '2023-12-25', contact: '555-7890' },
+  { id: 'd1', name: 'Aarav Sharma', bloodType: 'A+', location: 'Mumbai', lastDonation: '2024-05-15', contact: '9876543210' },
+  { id: 'd2', name: 'Vivaan Singh', bloodType: 'O-', location: 'Delhi', lastDonation: '2024-04-20', contact: '9876543211' },
+  { id: 'd3', name: 'Aditya Kumar', bloodType: 'B+', location: 'Bangalore', lastDonation: '2024-02-10', contact: '9876543212' },
+  { id: 'd4', name: 'Vihaan Gupta', bloodType: 'AB+', location: 'Mumbai', lastDonation: '2024-06-01', contact: '9876543213' },
+  { id: 'd5', name: 'Arjun Patel', bloodType: 'O+', location: 'Delhi', lastDonation: '2023-11-25', contact: '9876543214' },
+  { id: 'd6', name: 'Sai Reddy', bloodType: 'A-', location: 'Hyderabad', lastDonation: '2024-01-05', contact: '9876543215' },
+  { id: 'd7', name: 'Reyansh Mishra', bloodType: 'B-', location: 'Kolkata', lastDonation: '2024-03-22', contact: '9876543216' },
+  { id: 'd8', name: 'Krishna Yadav', bloodType: 'AB-', location: 'Chennai', lastDonation: '2024-05-30', contact: '9876543217' },
+  { id: 'd9', name: 'Ishaan Verma', bloodType: 'A+', location: 'Pune', lastDonation: '2024-02-18', contact: '9876543218' },
+  { id: 'd10', name: 'Ayaan Khan', bloodType: 'O+', location: 'Ahmedabad', lastDonation: '2024-04-12', contact: '9876543219' },
+  { id: 'd11', name: 'Ananya Sharma', bloodType: 'B+', location: 'Mumbai', lastDonation: '2024-05-01', contact: '9876543220' },
+  { id: 'd12', name: 'Diya Singh', bloodType: 'A+', location: 'Delhi', lastDonation: '2024-03-10', contact: '9876543221' },
+  { id: 'd13', name: 'Myra Kumar', bloodType: 'O-', location: 'Bangalore', lastDonation: '2024-06-05', contact: '9876543222' },
+  { id: 'd14', name: 'Saanvi Gupta', bloodType: 'AB+', location: 'Kolkata', lastDonation: '2023-12-15', contact: '9876543223' },
+  { id: 'd15', name: 'Aadhya Patel', bloodType: 'B-', location: 'Chennai', lastDonation: '2024-04-25', contact: '9876543224' },
+  { id: 'd16', name: 'Kiara Reddy', bloodType: 'O+', location: 'Hyderabad', lastDonation: '2024-01-20', contact: '9876543225' },
+  { id: 'd17', name: 'Priya Mishra', bloodType: 'A-', location: 'Pune', lastDonation: '2024-05-18', contact: '9876543226' },
+  { id: 'd18', name: 'Riya Yadav', bloodType: 'AB-', location: 'Ahmedabad', lastDonation: '2024-02-28', contact: '9876543227' },
+  { id: 'd19', name: 'Shanaya Verma', bloodType: 'B+', location: 'Mumbai', lastDonation: '2024-04-02', contact: '9876543228' },
+  { id: 'd20', name: 'Zara Khan', bloodType: 'O-', location: 'Delhi', lastDonation: '2024-03-29', contact: '9876543229' },
 ];
 
 export const MOCK_REQUEST_HISTORY: RequestHistoryItem[] = [
