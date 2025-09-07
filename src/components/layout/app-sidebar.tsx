@@ -11,7 +11,6 @@ import {
   LayoutGrid,
   Send,
   Users,
-  HeartPulse,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,6 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import BloodDropIcon from "../icons/blood-drop-icon";
 
 const menuItems = [
   { href: "/dashboard", label: "Resource Inventory", icon: LayoutGrid },
@@ -40,23 +40,12 @@ const aiTools = [
 const aboutLink = { href: "/about", label: "About Us", icon: Info };
 const homeLink = { href: "/", label: "Welcome Page", icon: Home };
 
-export default function AppSidebar() {
-  const pathname = usePathname();
+function SidebarNav() {
+    const pathname = usePathname();
+    const isLinkActive = (href: string) => pathname === href;
 
-  const isLinkActive = (href: string) => pathname === href;
-
-  return (
-    <aside className="w-64 flex-shrink-0 border-r border-border bg-card p-4 flex flex-col">
-      <div className="flex items-center gap-3 px-2 mb-6">
-        <div className="text-primary">
-          <HeartPulse className="h-8 w-8" />
-        </div>
-        <h2 className="text-xl font-bold font-headline text-foreground">
-          Blood Bridge
-        </h2>
-      </div>
-
-      <nav className="flex-1 flex flex-col justify-between overflow-y-auto">
+    return (
+        <nav className="flex-1 flex flex-col justify-between overflow-y-auto">
         <div className="space-y-2">
           <p className="px-2 text-xs font-semibold text-muted-foreground tracking-wider uppercase">Main</p>
           <ul className="space-y-1">
@@ -123,6 +112,21 @@ export default function AppSidebar() {
           </li>
         </ul>
       </nav>
+    );
+}
+
+export default function AppSidebar() {
+  return (
+    <aside className="w-64 flex-shrink-0 border-r border-border bg-card p-4 flex flex-col">
+      <div className="flex items-center gap-3 px-2 mb-6">
+        <div className="text-primary">
+          <BloodDropIcon className="h-8 w-8" />
+        </div>
+        <h2 className="text-xl font-bold font-headline text-foreground">
+          Blood Bridge
+        </h2>
+      </div>
+      <SidebarNav />
     </aside>
   );
 }
