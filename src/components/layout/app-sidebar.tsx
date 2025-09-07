@@ -11,6 +11,7 @@ import {
   LayoutGrid,
   Send,
   Users,
+  HeartPulse,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -21,7 +22,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import BloodDropIcon from "../icons/blood-drop-icon";
 
 const menuItems = [
   { href: "/dashboard", label: "Resource Inventory", icon: LayoutGrid },
@@ -48,7 +48,9 @@ export default function AppSidebar() {
   return (
     <aside className="w-64 flex-shrink-0 border-r border-border bg-card p-4 flex flex-col">
       <div className="flex items-center gap-3 px-2 mb-6">
-        <BloodDropIcon className="h-8 w-8 text-primary" />
+        <div className="text-primary">
+          <HeartPulse className="h-8 w-8" />
+        </div>
         <h2 className="text-xl font-bold font-headline text-foreground">
           Blood Bridge
         </h2>
