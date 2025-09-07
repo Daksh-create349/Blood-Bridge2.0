@@ -13,6 +13,7 @@ export const MOCK_RESOURCES: BloodResource[] = [
   { id: '10', bloodType: 'O+', quantity: 35, location: 'MGM Hospital, Vashi', status: 'Available' },
   { id: '11', bloodType: 'B+', quantity: 20, location: 'Fortis Hiranandani Hospital, Vashi', status: 'Available' },
   { id: '12', bloodType: 'A+', quantity: 30, location: 'Reliance Hospital, Navi Mumbai', status: 'Available' },
+  { id: '13', bloodType: 'B+', quantity: 30, location: 'MGM Hospital, Vashi', status: 'Available' },
 ];
 
 export const MOCK_ACTIVE_REQUESTS: UrgentRequest[] = [
