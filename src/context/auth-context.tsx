@@ -6,7 +6,8 @@ import useLocalStorage from '@/hooks/use-local-storage';
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (redirect?: string) => void;
+  hospital: string | null;
+  login: (hospital: string | null, redirect?: string) => void;
   logout: () => void;
 }
 
@@ -14,20 +15,23 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useLocalStorage('isAuthenticated', false);
+  const [hospital, setHospital] = useLocalStorage<string | null>('loggedInHospital', null);
   const router = useRouter();
 
-  const login = (redirect = '/dashboard') => {
+  const login = (hospital: string | null, redirect = '/dashboard') => {
     setIsAuthenticated(true);
+    setHospital(hospital);
     router.push(redirect);
   };
 
   const logout = () => {
     setIsAuthenticated(false);
+    setHospital(null);
     router.push('/login');
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, hospital, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

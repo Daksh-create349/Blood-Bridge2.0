@@ -20,26 +20,24 @@ export default function LoginPage() {
   const { login } = useAuth();
   const searchParams = useSearchParams();
   const { toast } = useToast();
+  const hospital = searchParams.get('hospital');
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const redirect = searchParams.get('redirect') || '/dashboard';
     
-    // In a real app, you'd validate credentials here.
-    // For this mock, we'll just log in.
-    
     toast({
       title: "Login Successful",
-      description: "Welcome, Admin!",
+      description: `Welcome, ${hospital || 'Admin'}!`,
     });
 
-    login(redirect);
+    login(hospital, redirect);
   };
 
   return (
     <Card>
       <CardHeader className="text-center">
-        <CardTitle>Hospital Admin Portal</CardTitle>
+        <CardTitle>{hospital ? `${hospital} Admin Portal` : 'Admin Portal'}</CardTitle>
         <CardDescription>
           Please log in to manage inventory.
         </CardDescription>

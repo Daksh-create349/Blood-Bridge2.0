@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { UpdateStockDialog } from "@/components/pages/dashboard/update-stock-dialog";
 import { useAuth } from "@/context/auth-context";
 import { useRouter } from "next/navigation";
+import { Lock } from "lucide-react";
 
 const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'success'> = {
   Critical: 'destructive',
@@ -27,9 +28,9 @@ const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'succes
   Available: 'success',
 };
 
-function ResourceCard({ resource, onUpdateClick }: { resource: BloodResource, onUpdateClick: (resource: BloodResource) => void }) {
+function ResourceCard({ resource, onUpdateClick, canUpdate }: { resource: BloodResource, onUpdateClick: (resource: BloodResource) => void, canUpdate: boolean }) {
   return (
-    <Card>
+    <Card className={!canUpdate ? 'opacity-60' : ''}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium flex items-center gap-2">
           <BloodDropIcon className="h-5 w-5" />
@@ -42,7 +43,8 @@ function ResourceCard({ resource, onUpdateClick }: { resource: BloodResource, on
         <p className="text-xs text-muted-foreground">{resource.location}</p>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" size="sm" className="w-full" onClick={() => onUpdateClick(resource)}>
+        <Button variant="outline" size="sm" className="w-full" onClick={() => onUpdateClick(resource)} disabled={!canUpdate}>
+          { !canUpdate && <Lock className="mr-2 h-3 w-3" /> }
           Update Units
         </Button>
       </CardFooter>
@@ -55,7 +57,7 @@ export default function DashboardPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<ResourceStatus | "all">("all");
   const [selectedResource, setSelectedResource] = useState<BloodResource | null>(null);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, hospital: loggedInHospital } = useAuth();
   const router = useRouter();
 
   const filteredResources = resources.filter((resource) => {
@@ -70,12 +72,18 @@ export default function DashboardPage() {
   const lowCount = resources.filter(r => r.status === 'Low').length;
   
   const handleUpdateClick = (resource: BloodResource) => {
-    if (isAuthenticated) {
+    if (isAuthenticated && loggedInHospital === resource.location) {
       setSelectedResource(resource);
     } else {
-      router.push('/login?redirect=/dashboard');
+      const redirectUrl = encodeURIComponent('/dashboard');
+      const hospitalName = encodeURIComponent(resource.location);
+      router.push(`/login?redirect=${redirectUrl}&hospital=${hospitalName}`);
     }
   };
+  
+  const canUpdate = (hospitalName: string) => {
+      return !isAuthenticated || loggedInHospital === hospitalName;
+  }
 
   const handleCloseDialog = () => {
     setSelectedResource(null);
@@ -160,7 +168,12 @@ export default function DashboardPage() {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredResources.map((resource) => (
-            <ResourceCard key={resource.id} resource={resource} onUpdateClick={handleUpdateClick} />
+            <ResourceCard 
+              key={resource.id} 
+              resource={resource} 
+              onUpdateClick={handleUpdateClick} 
+              canUpdate={!isAuthenticated || loggedInHospital === resource.location}
+            />
           ))}
         </div>
       </div>

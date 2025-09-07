@@ -11,7 +11,8 @@ import {
   LayoutGrid,
   Users,
   LogOut,
-  LogIn
+  LogIn,
+  Building,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -43,7 +44,7 @@ const homeLink = { href: "/", label: "Welcome Page", icon: Home };
 
 export default function AppSidebar() {
   const pathname = usePathname();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, hospital } = useAuth();
 
   const isLinkActive = (href: string) => pathname === href;
 
@@ -102,6 +103,12 @@ export default function AppSidebar() {
         </div>
 
         <ul className="space-y-1 border-t border-border pt-4">
+           {isAuthenticated && hospital && (
+            <li className="px-2 py-2 text-xs font-medium text-muted-foreground flex items-center gap-2">
+              <Building className="h-4 w-4" />
+              <span className="truncate">Logged in as: {hospital}</span>
+            </li>
+          )}
           {isAuthenticated ? (
              <li>
               <Button
