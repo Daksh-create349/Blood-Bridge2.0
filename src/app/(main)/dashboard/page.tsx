@@ -17,10 +17,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import BloodDropIcon from "@/components/icons/blood-drop-icon";
 
-const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'default'> = {
+const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'success'> = {
   Critical: 'destructive',
   Low: 'secondary',
-  Available: 'default',
+  Available: 'success',
 };
 
 function ResourceCard({ resource }: { resource: BloodResource }) {
