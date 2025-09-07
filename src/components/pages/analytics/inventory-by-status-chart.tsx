@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
@@ -32,28 +33,17 @@ const chartConfig = {
   },
   Critical: {
     label: "Critical",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--destructive))",
   },
 } satisfies ChartConfig;
 
 export function InventoryByStatusChart({ data }: InventoryByStatusChartProps) {
-  const chartData = [
-    {
-      status: "Available",
-      count: data.filter((r) => r.status === "Available").length,
-      fill: "var(--color-Available)",
-    },
-    {
-      status: "Low",
-      count: data.filter((r) => r.status === "Low").length,
-      fill: "var(--color-Low)",
-    },
-    {
-      status: "Critical",
-      count: data.filter((r) => r.status === "Critical").length,
-      fill: "var(--color-Critical)",
-    },
-  ];
+  const chartData = Object.entries(chartConfig).map(([status, config]) => ({
+      status,
+      count: data.filter((r) => r.status === status).length,
+      fill: config.color,
+  }));
+
 
   return (
     <Card>
@@ -76,6 +66,7 @@ export function InventoryByStatusChart({ data }: InventoryByStatusChartProps) {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+              tickFormatter={(value) => chartConfig[value as keyof typeof chartConfig]?.label}
             />
             <XAxis type="number" hide />
             <ChartTooltip
