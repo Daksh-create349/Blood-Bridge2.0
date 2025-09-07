@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { BloodResource } from "@/lib/types";
+import { Droplets } from "lucide-react";
 
 interface UpdateStockDialogProps {
   resource: BloodResource | null;
@@ -43,9 +44,12 @@ export function UpdateStockDialog({ resource, onClose, onConfirm }: UpdateStockD
     <Dialog open={!!resource} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Update Blood Units</DialogTitle>
+          <DialogTitle className="flex items-center gap-2">
+            <Droplets className="h-6 w-6 text-primary" />
+            Update Blood Units
+          </DialogTitle>
           <DialogDescription>
-            Update the available units for {resource.bloodType} at {resource.location}.
+            Update the available units for blood type <span className="font-bold text-primary">{resource.bloodType}</span> at {resource.location}.
           </DialogDescription>
         </DialogHeader>
         <div className="py-4 space-y-2">
@@ -56,6 +60,7 @@ export function UpdateStockDialog({ resource, onClose, onConfirm }: UpdateStockD
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
             placeholder="Enter new quantity"
+            className="text-lg"
           />
         </div>
         <DialogFooter>

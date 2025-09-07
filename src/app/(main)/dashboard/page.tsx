@@ -15,32 +15,43 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import BloodDropIcon from "@/components/icons/blood-drop-icon";
 import { Button } from "@/components/ui/button";
 import { UpdateStockDialog } from "@/components/pages/dashboard/update-stock-dialog";
+import { AlertTriangle, Droplets, PackageCheck, Pencil } from "lucide-react";
 
-const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'success'> = {
-  Critical: 'destructive',
-  Low: 'secondary',
-  Available: 'success',
+const statusConfig: Record<ResourceStatus, {
+  variant: 'destructive' | 'warning' | 'success';
+  icon: React.ElementType;
+}> = {
+  Critical: { variant: 'destructive', icon: AlertTriangle },
+  Low: { variant: 'warning', icon: AlertTriangle },
+  Available: { variant: 'success', icon: PackageCheck },
 };
 
 function ResourceCard({ resource, onUpdateClick }: { resource: BloodResource, onUpdateClick: (resource: BloodResource) => void }) {
+  const config = statusConfig[resource.status];
+
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium flex items-center gap-2">
-          <BloodDropIcon className="h-5 w-5" />
-          Blood Type: {resource.bloodType}
-        </CardTitle>
-        <Badge variant={statusColors[resource.status]}>{resource.status}</Badge>
+    <Card className="hover:border-primary/50 transition-colors duration-300">
+      <CardHeader>
+        <div className="flex justify-between items-center">
+            <CardTitle className="text-lg font-bold font-headline flex items-center gap-2">
+              <Droplets className="h-6 w-6 text-primary" />
+              {resource.bloodType}
+            </CardTitle>
+            <Badge variant={config.variant} className="flex items-center gap-1.5">
+              <config.icon className="h-3.5 w-3.5" />
+              {resource.status}
+            </Badge>
+        </div>
+        <p className="text-sm text-muted-foreground pt-1">{resource.location}</p>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{resource.quantity} units</div>
-        <p className="text-xs text-muted-foreground">{resource.location}</p>
+        <div className="text-3xl font-bold">{resource.quantity} <span className="text-base font-normal text-muted-foreground">units</span></div>
       </CardContent>
       <CardFooter>
         <Button variant="outline" size="sm" className="w-full" onClick={() => onUpdateClick(resource)}>
+          <Pencil className="mr-2 h-4 w-4" />
           Update Units
         </Button>
       </CardFooter>
@@ -102,11 +113,10 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Critical Supplies</CardTitle>
-              <div className="h-8 w-8 rounded-full bg-destructive/20 flex items-center justify-center">
-                <span className="text-destructive font-bold">{criticalCount}</span>
-              </div>
+              <AlertTriangle className="h-5 w-5 text-destructive"/>
             </CardHeader>
             <CardContent>
+              <div className="text-2xl font-bold">{criticalCount}</div>
               <p className="text-xs text-muted-foreground">
                 Items needing immediate attention.
               </p>
@@ -115,11 +125,10 @@ export default function DashboardPage() {
           <Card>
              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Low Supplies</CardTitle>
-              <div className="h-8 w-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                 <span className="text-yellow-400 font-bold">{lowCount}</span>
-              </div>
+              <AlertTriangle className="h-5 w-5 text-yellow-400"/>
             </CardHeader>
             <CardContent>
+              <div className="text-2xl font-bold">{lowCount}</div>
               <p className="text-xs text-muted-foreground">
                 Items that may need restocking soon.
               </p>
