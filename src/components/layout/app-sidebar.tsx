@@ -25,6 +25,7 @@ import {
 import { Button } from "@/components/ui/button";
 import BloodDropIcon from "../icons/blood-drop-icon";
 import { useAuth } from "@/context/auth-context";
+import { useEffect, useState } from "react";
 
 const menuItems = [
   { href: "/dashboard", label: "Resource Inventory", icon: LayoutGrid },
@@ -45,6 +46,11 @@ const homeLink = { href: "/", label: "Welcome Page", icon: Home };
 export default function AppSidebar() {
   const pathname = usePathname();
   const { isAuthenticated, logout, hospital } = useAuth();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const isLinkActive = (href: string) => pathname === href;
 
@@ -103,13 +109,13 @@ export default function AppSidebar() {
         </div>
 
         <ul className="space-y-1 border-t border-border pt-4">
-           {isAuthenticated && hospital && (
+          {isClient && isAuthenticated && hospital && (
             <li className="px-2 py-2 text-xs font-medium text-muted-foreground flex items-center gap-2">
               <Building className="h-4 w-4" />
               <span className="truncate">Logged in as: {hospital}</span>
             </li>
           )}
-          {isAuthenticated ? (
+          {isClient && isAuthenticated ? (
              <li>
               <Button
                 variant="ghost"
@@ -120,7 +126,7 @@ export default function AppSidebar() {
                 Logout
               </Button>
             </li>
-          ) : (
+          ) : isClient ? (
             <li>
               <Link href="/login">
                 <Button
@@ -131,6 +137,10 @@ export default function AppSidebar() {
                   Admin Login
                 </Button>
               </Link>
+            </li>
+          ) : (
+            <li>
+              <div className="h-9 w-full"></div>
             </li>
           )}
           <li>
