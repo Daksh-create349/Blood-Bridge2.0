@@ -24,6 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Phone, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 
 export default function DonorsPage() {
   const [donors] = useLocalStorage<Donor[]>("donors", MOCK_DONORS);
