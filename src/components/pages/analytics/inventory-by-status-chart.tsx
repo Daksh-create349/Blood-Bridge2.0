@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
 
 import {
   Card,
@@ -41,14 +41,17 @@ export function InventoryByStatusChart({ data }: InventoryByStatusChartProps) {
     {
       status: "Available",
       count: data.filter((r) => r.status === "Available").length,
+      fill: "var(--color-Available)",
     },
     {
       status: "Low",
       count: data.filter((r) => r.status === "Low").length,
+      fill: "var(--color-Low)",
     },
     {
       status: "Critical",
       count: data.filter((r) => r.status === "Critical").length,
+      fill: "var(--color-Critical)",
     },
   ];
 
@@ -67,20 +70,22 @@ export function InventoryByStatusChart({ data }: InventoryByStatusChartProps) {
             margin={{ left: 10 }}
           >
             <CartesianGrid horizontal={false} />
+            <YAxis
+              dataKey="status"
+              type="category"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
             <XAxis type="number" hide />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
             <Bar dataKey="count" layout="vertical" radius={5}>
-              {chartData.map((entry) => (
-                <Bar
-                  key={entry.status}
-                  dataKey="count"
-                  name={entry.status}
-                  fill={`var(--color-${entry.status})`}
-                />
-              ))}
+                {chartData.map((entry) => (
+                    <Cell key={entry.status} fill={entry.fill} />
+                ))}
             </Bar>
           </BarChart>
         </ChartContainer>
