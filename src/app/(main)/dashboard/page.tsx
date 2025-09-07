@@ -18,6 +18,8 @@ import { Badge } from "@/components/ui/badge";
 import BloodDropIcon from "@/components/icons/blood-drop-icon";
 import { Button } from "@/components/ui/button";
 import { UpdateStockDialog } from "@/components/pages/dashboard/update-stock-dialog";
+import { useAuth } from "@/context/auth-context";
+import { useRouter } from "next/navigation";
 
 const statusColors: Record<ResourceStatus, 'destructive' | 'secondary' | 'success'> = {
   Critical: 'destructive',
@@ -53,6 +55,8 @@ export default function DashboardPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<ResourceStatus | "all">("all");
   const [selectedResource, setSelectedResource] = useState<BloodResource | null>(null);
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
 
   const filteredResources = resources.filter((resource) => {
     const searchMatch =
@@ -66,7 +70,11 @@ export default function DashboardPage() {
   const lowCount = resources.filter(r => r.status === 'Low').length;
   
   const handleUpdateClick = (resource: BloodResource) => {
-    setSelectedResource(resource);
+    if (isAuthenticated) {
+      setSelectedResource(resource);
+    } else {
+      router.push('/login?redirect=/dashboard');
+    }
   };
 
   const handleCloseDialog = () => {
