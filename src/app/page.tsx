@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
@@ -5,11 +6,20 @@ import Link from 'next/link';
 
 export default function WelcomePage() {
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background">
-      <div className="absolute inset-0 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-      <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]"></div>
-
-      <main className="text-center text-white p-4 z-10 flex flex-col items-center">
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+      >
+        <source src="https://cdn.pixabay.com/video/2023/11/18/189681-886028714_large.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div className="absolute inset-0 bg-black/60 z-10"></div>
+      
+      <main className="text-center text-white p-4 z-20 flex flex-col items-center">
         <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
           Welcome to Blood Bridge
         </h1>
@@ -47,7 +57,7 @@ export default function WelcomePage() {
         </div>
       </main>
 
-      <footer className="absolute bottom-4 text-white/70 z-10">
+      <footer className="absolute bottom-4 text-white/70 z-20">
         <Link href="/dashboard" className="text-sm hover:text-white transition-colors">
           Go to Main Dashboard
         </Link>
