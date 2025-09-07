@@ -1,12 +1,16 @@
+"use client";
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { Inter, Poppins, Space_Grotesk } from 'next/font/google';
+import { useState, useEffect } from 'react';
+import SplashScreen from '@/components/layout/splash-screen';
 
-export const metadata: Metadata = {
-  title: 'Blood Bridge',
-  description: 'Bridging the gap between need & donor.',
-};
+// export const metadata: Metadata = {
+//   title: 'Blood Bridge',
+//   description: 'Bridging the gap between need & donor.',
+// };
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,10 +33,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Adjust the duration as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${poppins.variable} font-body antialiased`}>
-        {children}
+        {loading ? <SplashScreen /> : children}
         <Toaster />
       </body>
     </html>
