@@ -46,7 +46,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${poppins.variable} font-body antialiased`}>
-        {loading ? <SplashScreen /> : children}
+        {loading && <SplashScreen />}
+        {children}
         <Toaster />
       </body>
     </html>
