@@ -9,6 +9,7 @@ import {
   Home,
   Info,
   LayoutGrid,
+  Send,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +25,7 @@ import BloodDropIcon from "../icons/blood-drop-icon";
 
 const menuItems = [
   { href: "/dashboard", label: "Resource Inventory", icon: LayoutGrid },
+  { href: "/send-request", label: "Send Request", icon: Send },
   { href: "/view-alerts", label: "Active Requests", icon: BellRing },
   { href: "/request-history", label: "Request History", icon: History },
   { href: "/analytics", label: "Analytics", icon: BarChart },
@@ -44,15 +46,15 @@ export default function AppSidebar() {
   const isLinkActive = (href: string) => pathname === href;
 
   return (
-    <aside className="w-64 flex-shrink-0 border-r border-border bg-background/50 backdrop-blur-sm p-4 flex flex-col">
+    <aside className="w-64 flex-shrink-0 border-r border-border bg-card p-4 flex flex-col">
       <div className="flex items-center gap-3 px-2 mb-6">
         <BloodDropIcon className="h-8 w-8 text-primary" />
-        <h2 className="text-xl font-bold font-headline text-primary-foreground">
+        <h2 className="text-xl font-bold font-headline text-foreground">
           Blood Bridge
         </h2>
       </div>
 
-      <nav className="flex-1 flex flex-col justify-between">
+      <nav className="flex-1 flex flex-col justify-between overflow-y-auto">
         <div className="space-y-2">
           <p className="px-2 text-xs font-semibold text-muted-foreground tracking-wider uppercase">Main</p>
           <ul className="space-y-1">

@@ -20,6 +20,7 @@ export interface UrgentRequest {
   urgency: UrgencyLevel;
   timePosted: string; // ISO string
   status: RequestStatus;
+  radius?: number;
 }
 
 export interface Donor {
@@ -33,6 +34,7 @@ export interface Donor {
 
 export interface RequestHistoryItem extends UrgentRequest {
   fulfilledBy?: string;
+  date: string;
 }
 
 export interface BloodBank {
