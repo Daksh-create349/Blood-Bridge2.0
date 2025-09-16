@@ -34,7 +34,7 @@ function AboutUsContent() {
       icon: BrainCircuit,
       title: "Innovate with AI",
       description: "Use AI to provide intelligent forecasting and request analysis to stay ahead of shortages.",
-      videoSrc: "https://cdn.pixabay.com/video/2024/02/06/198751-910408544_large.mp4"
+      videoSrc: "https://media.istockphoto.com/id/1491463133/video/illustrative-3d-animation-of-neural-network-concept-chatbot-artificial-intelligence-deep.mp4?s=mp4-640x640-is&k=20&c=GfH4iLh-gzyr0Ii2-LNoGFbzOdRspiD3pqzI9_oRgqg="
     }
   ];
 
