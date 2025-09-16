@@ -16,7 +16,7 @@ import {
 import { DonationDialog } from "@/components/pages/view-alerts/donation-dialog";
 import useLocalStorage from "@/hooks/use-local-storage";
 import { MOCK_ACTIVE_REQUESTS, MOCK_REQUEST_HISTORY } from "@/lib/data";
-import type { BloodBank, RequestHistoryItem, UrgentRequest } from "@/lib/types";
+import type { RequestHistoryItem, UrgentRequest } from "@/lib/types";
 import BloodDropIcon from "@/components/icons/blood-drop-icon";
 import { useToast } from "@/hooks/use-toast";
 
@@ -67,7 +67,7 @@ export default function ViewAlertsPage() {
     setSelectedRequest(null);
   };
 
-  const handleConfirmDonation = (requestId: string, bloodBank: BloodBank) => {
+  const handleConfirmDonation = (requestId: string, hospitalName: string) => {
     const requestToMove = activeRequests.find(req => req.id === requestId);
     if (requestToMove) {
       // Remove from active requests
@@ -77,7 +77,7 @@ export default function ViewAlertsPage() {
       const historyItem: RequestHistoryItem = {
         ...requestToMove,
         status: "Fulfilled",
-        fulfilledBy: bloodBank.name,
+        fulfilledBy: hospitalName,
         date: new Date().toISOString().split('T')[0],
       };
       setHistory(prev => [historyItem, ...prev]);
