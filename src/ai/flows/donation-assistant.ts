@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -32,7 +33,7 @@ export async function donationAssistant(
   return output!;
 }
 
-const donationAssistantPrompt = ai.definePrompt({
+const prompt = ai.definePrompt({
   name: 'donationAssistantPrompt',
   input: {schema: DonationAssistantInputSchema},
   output: {schema: DonationAssistantOutputSchema},
@@ -60,8 +61,28 @@ When responding to the user, BE CONCISE. Use markdown for formatting if it helps
 
 Use the provided conversation history to maintain context.
 
-{{{history}}}
+{{#if history}}
+{{#each history}}
+{{#if (eq role 'user')}}
+User: {{{content}}}
+{{else}}
+Model: {{{content}}}
+{{/if}}
+{{/each}}
+{{/if}}
 
 User Query: {{{query}}}
 `,
 });
+
+const donationAssistantFlow = ai.defineFlow(
+  {
+    name: 'donationAssistantFlow',
+    inputSchema: DonationAssistantInputSchema,
+    outputSchema: DonationAssistantOutputSchema,
+  },
+  async input => {
+    const {output} = await prompt(input);
+    return output!;
+  }
+);
