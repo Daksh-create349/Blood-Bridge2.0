@@ -55,12 +55,14 @@ export function DonationAssistantWidget() {
     if (!input.trim()) return;
 
     const userMessage: Message = { role: "user", content: input };
-    setMessages((prev) => [...prev, userMessage]);
+    const newMessages = [...messages, userMessage];
+
+    setMessages(newMessages);
     setInput("");
     setIsLoading(true);
 
     try {
-        const history = messages.map(m => ({ role: m.role, content: m.content }));
+        const history = newMessages.slice(0, -1).map(m => ({ role: m.role, content: m.content }));
         const assistantInput: DonationAssistantInput = { query: input, history };
         const result = await donationAssistant(assistantInput);
         const assistantMessage: Message = { role: "model", content: result.response };
@@ -71,8 +73,8 @@ export function DonationAssistantWidget() {
             title: "Assistant Error",
             description: "Sorry, I couldn't process that request. Please try again.",
         });
-        // Remove the user's message if the API call fails
-        setMessages(prev => prev.slice(0, -1));
+        // Restore previous messages if the API call fails
+        setMessages(messages);
     } finally {
         setIsLoading(false);
     }
