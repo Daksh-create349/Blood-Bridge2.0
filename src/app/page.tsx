@@ -75,24 +75,61 @@ function AboutUsContent() {
 }
 
 export default function WelcomePage() {
+    const { theme } = useTheme();
+
+    const darkVideoSrc = "https://cdn.pixabay.com/video/2024/05/27/213166_large.mp4";
+    const lightVideoSrc = "https://media.istockphoto.com/id/1287414521/video/intravenous-medical-research-doctor-applying-tourniquet-on-black-guy-arm-before-taking-blood.mp4?s=mp4-640x640-is&k=20&c=z5dEHMc9-xR4jwxOv1Ir_fthm-DVEQmEvsLFeA2hlds=";
+    const videoSrc = theme === 'light' ? lightVideoSrc : darkVideoSrc;
+
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center bg-background">
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-center bg-background overflow-hidden">
+        <video
+            key={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        >
+            <source src={videoSrc} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
       <main className="text-center p-4 z-20 flex flex-col items-center">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-300 dark:from-white dark:to-gray-300">
           Blood Bridge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-muted-foreground font-light max-w-2xl">
+        <p className="mt-4 text-lg md:text-xl text-gray-300 dark:text-gray-300 font-light max-w-2xl">
           Bridging the gap between need & donor.
         </p>
 
-         <div className="mt-12">
+        <div className="mt-12 space-x-4">
             <Link href="/dashboard">
                 <Button size="lg">
                     Go to Dashboard <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
             </Link>
+             <Sheet>
+                <SheetTrigger asChild>
+                    <Button size="lg" variant="outline">
+                        About Us
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="bottom" className="h-auto">
+                    <SheetHeader className="text-center max-w-4xl mx-auto py-8">
+                        <SheetTitle className="text-4xl font-headline">Connecting Communities, Saving Lives</SheetTitle>
+                        <SheetDescription className="text-lg">
+                           Blood Bridge is an AI-powered platform designed to connect blood banks, hospitals, and donors to save lives.
+                        </SheetDescription>
+                    </SheetHeader>
+                    <AboutUsContent />
+                </SheetContent>
+            </Sheet>
         </div>
       </main>
+
+      <footer className="absolute bottom-4 text-center text-xs text-gray-400 z-20">
+          <p>A smart inventory management and alert system for blood banks.</p>
+      </footer>
     </div>
   );
 }
