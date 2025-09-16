@@ -22,7 +22,7 @@ function AboutUsContent() {
       icon: HeartPulse,
       title: "Save Lives",
       description: "Reduce response times and save lives during critical emergencies with real-time alerts.",
-      videoSrc: "https://cdn.pixabay.com/video/2021/08/04/81442-573243959_large.mp4"
+      videoSrc: "https://cdn.pixabay.com/video/2019/02/23/21617-319452308_large.mp4"
     },
     {
       icon: Users,
