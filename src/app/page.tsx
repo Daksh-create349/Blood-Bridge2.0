@@ -20,40 +20,40 @@ function AboutUsContent() {
   return (
      <div className="py-10">
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-transparent border-0 shadow-none text-left">
-                <CardHeader className="p-0">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+            <Card className="bg-card/50">
+                <CardHeader>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <HeartPulse className="h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg text-foreground">Save Lives</CardTitle>
                 </CardHeader>
-                <CardContent className="p-0 mt-2">
+                <CardContent>
                 <p className="text-muted-foreground text-sm">
                     Reduce response times and save lives during critical emergencies.
                 </p>
                 </CardContent>
             </Card>
-            <Card className="bg-transparent border-0 shadow-none text-left">
-                <CardHeader className="p-0">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+            <Card className="bg-card/50">
+                <CardHeader>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <Users className="h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg text-foreground">Build Community</CardTitle>
                 </CardHeader>
-                <CardContent className="p-0 mt-2">
+                <CardContent>
                 <p className="text-muted-foreground text-sm">
                     Connect donors, hospitals, and blood banks to build a strong, responsive community network.
                 </p>
                 </CardContent>
             </Card>
-            <Card className="bg-transparent border-0 shadow-none text-left">
-                <CardHeader className="p-0">
-                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+            <Card className="bg-card/50">
+                <CardHeader>
+                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <BrainCircuit className="h-6 w-6" />
                 </div>
                 <CardTitle className="text-lg text-foreground">Innovate with AI</CardTitle>
                 </CardHeader>
-                <CardContent className="p-0 mt-2">
+                <CardContent>
                 <p className="text-muted-foreground text-sm">
                     Use AI to provide intelligent forecasting and request analysis to stay ahead of shortages.
                 </p>
