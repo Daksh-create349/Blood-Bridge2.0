@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -45,7 +46,7 @@ export function UpdateStockDialog({ resource, onClose, onConfirm }: UpdateStockD
 
   const handleLogin = () => {
     // Mock authentication
-    if (email.toLowerCase().endsWith('@hospital.admin') && password === 'password123') {
+    if (password === 'password123') {
       setIsLoggedIn(true);
       toast({
         title: "Login Successful",
