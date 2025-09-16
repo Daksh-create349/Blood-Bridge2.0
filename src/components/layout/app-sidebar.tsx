@@ -7,7 +7,6 @@ import {
   Bot,
   History,
   Home,
-  Info,
   LayoutGrid,
   Send,
   Users,
@@ -37,7 +36,6 @@ const aiTools = [
   { href: "/forecasting", label: "AI Supply Forecasting", icon: BrainCircuit },
 ];
 
-const aboutLink = { href: "/about", label: "About Us", icon: Info };
 const homeLink = { href: "/", label: "Welcome Page", icon: Home };
 
 function SidebarNav() {
@@ -91,17 +89,6 @@ function SidebarNav() {
         </div>
 
         <ul className="space-y-1 border-t border-border pt-4">
-          <li>
-            <Link href={aboutLink.href}>
-              <Button
-                variant={isLinkActive(aboutLink.href) ? "secondary" : "ghost"}
-                className="w-full justify-start"
-              >
-                <aboutLink.icon className="mr-2 h-4 w-4" />
-                {aboutLink.label}
-              </Button>
-            </Link>
-          </li>
           <li>
             <Link href={homeLink.href}>
               <Button variant="ghost" className="w-full justify-start">
