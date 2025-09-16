@@ -77,7 +77,7 @@ function AboutUsContent() {
 export default function WelcomePage() {
     const { theme } = useTheme();
 
-    const darkVideoSrc = "https://cdn.pixabay.com/video/2024/05/27/213166_large.mp4";
+    const darkVideoSrc = "https://cdn.pixabay.com/video/2023/11/18/189681-886028714_large.mp4";
     const lightVideoSrc = "https://media.istockphoto.com/id/1287414521/video/intravenous-medical-research-doctor-applying-tourniquet-on-black-guy-arm-before-taking-blood.mp4?s=mp4-640x640-is&k=20&c=z5dEHMc9-xR4jwxOv1Ir_fthm-DVEQmEvsLFeA2hlds=";
     const videoSrc = theme === 'light' ? lightVideoSrc : darkVideoSrc;
 
@@ -93,12 +93,12 @@ export default function WelcomePage() {
         >
             <source src={videoSrc} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <div className="absolute inset-0 bg-black/60 dark:bg-black/50 z-10"></div>
       <main className="text-center p-4 z-20 flex flex-col items-center">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-300 dark:from-white dark:to-gray-300">
+        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-gray-800 to-black dark:from-white dark:to-gray-300">
           Blood Bridge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-300 dark:text-gray-300 font-light max-w-2xl">
+        <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl">
           Bridging the gap between need & donor.
         </p>
 
