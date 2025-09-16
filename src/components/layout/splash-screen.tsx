@@ -1,14 +1,13 @@
-import BloodDropIcon from "@/components/icons/blood-drop-icon";
 
 const SplashScreen = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-white">
-      <div className="animate-pulse">
-        <BloodDropIcon className="h-24 w-24 text-primary" />
-      </div>
-      <h1 className="text-4xl font-headline font-bold mt-6 animate-bounce">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white text-gray-800">
+      <h1 className="text-5xl font-headline font-bold">
         Blood Bridge
       </h1>
+      <p className="mt-4 text-lg text-gray-600">
+        Bridging the gap between need & donor.
+      </p>
     </div>
   );
 };
