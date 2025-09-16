@@ -33,7 +33,6 @@ const menuItems = [
 ];
 
 const aiTools = [
-  { href: "/urgent-request", label: "Urgent Request AI", icon: Bot },
   { href: "/forecasting", label: "AI Supply Forecasting", icon: BrainCircuit },
 ];
 

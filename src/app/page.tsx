@@ -103,7 +103,7 @@ export default function WelcomePage() {
               <CardDescription>Urgently need blood? Alert donors now.</CardDescription>
             </CardHeader>
             <CardContent>
-              <Link href="/urgent-request">
+              <Link href="/send-request">
                 <Button className="w-full" size="lg">
                   Send an Alert <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
