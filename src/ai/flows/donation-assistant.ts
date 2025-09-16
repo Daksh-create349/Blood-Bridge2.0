@@ -13,7 +13,7 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const DonationAssistantInputSchema = z.object({
-  query: z.string().describe('The user\'s question or message to the assistant.'),
+  query: z.string().describe("The user's question or message to the assistant."),
   history: z.array(z.object({
     role: z.enum(['user', 'model']),
     content: z.string(),
@@ -22,22 +22,21 @@ const DonationAssistantInputSchema = z.object({
 export type DonationAssistantInput = z.infer<typeof DonationAssistantInputSchema>;
 
 const DonationAssistantOutputSchema = z.object({
-    response: z.string().describe('The chatbot\'s response to the user query.')
+    response: z.string().describe("The chatbot's response to the user query.")
 });
 export type DonationAssistantOutput = z.infer<typeof DonationAssistantOutputSchema>;
 
 export async function donationAssistant(
   input: DonationAssistantInput
 ): Promise<DonationAssistantOutput> {
-  const {output} = await donationAssistantPrompt(input);
-  return output!;
+  return await donationAssistantFlow(input);
 }
 
 const prompt = ai.definePrompt({
   name: 'donationAssistantPrompt',
   input: {schema: DonationAssistantInputSchema},
   output: {schema: DonationAssistantOutputSchema},
-  prompt: `You are the "Blood Bridge Donation Assistant," a friendly and helpful AI chatbot. Your purpose is to assist users of the Blood Bridge application.
+  system: `You are the "Blood Bridge Donation Assistant," a friendly and helpful AI chatbot. Your purpose is to assist users of the Blood Bridge application.
 
 You are an expert on blood donation, different blood types, and the features of this app.
 
@@ -58,20 +57,6 @@ Blood Donation Eligibility (General Guidelines - mention these are general and c
 - Tattoos/Piercings: A waiting period may be required (e.g., 3-6 months).
 
 When responding to the user, BE CONCISE. Use markdown for formatting if it helps clarity (e.g., lists).
-
-Use the provided conversation history to maintain context.
-
-{{#if history}}
-{{#each history}}
-{{#if (eq role 'user')}}
-User: {{{content}}}
-{{else}}
-Model: {{{content}}}
-{{/if}}
-{{/each}}
-{{/if}}
-
-User Query: {{{query}}}
 `,
 });
 
@@ -81,8 +66,11 @@ const donationAssistantFlow = ai.defineFlow(
     inputSchema: DonationAssistantInputSchema,
     outputSchema: DonationAssistantOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
+  async ({ query, history }) => {
+    const { output } = await prompt({
+        history: history,
+        prompt: query,
+    });
     return output!;
   }
 );
