@@ -58,6 +58,7 @@ Blood Donation Eligibility (General Guidelines - mention these are general and c
 
 When responding to the user, BE CONCISE. Use markdown for formatting if it helps clarity (e.g., lists).
 `,
+  prompt: `{{query}}`,
 });
 
 const donationAssistantFlow = ai.defineFlow(
@@ -68,8 +69,8 @@ const donationAssistantFlow = ai.defineFlow(
   },
   async ({ query, history }) => {
     const { output } = await prompt({
-        history: history,
-        prompt: query,
+      query: query,
+      history: history,
     });
     return output!;
   }
