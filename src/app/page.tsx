@@ -14,6 +14,7 @@ import {
   SheetDescription,
 } from "@/components/ui/sheet"
 import { BrainCircuit, HeartPulse, Users } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 
 function AboutUsContent() {
@@ -74,16 +75,22 @@ function AboutUsContent() {
 }
 
 export default function WelcomePage() {
+  const { theme } = useTheme();
+
+  const lightVideoUrl = "https://media.istockphoto.com/id/1287414521/video/intravenous-medical-research-doctor-applying-tourniquet-on-black-guy-arm-before-taking-blood.mp4?s=mp4-640x640-is&k=20&c=z5dEHMc9-xR4jwxOv1Ir_fthm-DVEQmEvsLFeA2hlds=";
+  const darkVideoUrl = "https://cdn.pixabay.com/video/2023/11/18/189681-886028714_large.mp4";
+
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
       <video
+        key={theme} // Add key to force re-render on theme change
         autoPlay
         muted
         loop
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="https://cdn.pixabay.com/video/2023/11/18/189681-886028714_large.mp4" type="video/mp4" />
+        <source src={theme === 'light' ? lightVideoUrl : darkVideoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="absolute inset-0 bg-black/60 z-10"></div>
