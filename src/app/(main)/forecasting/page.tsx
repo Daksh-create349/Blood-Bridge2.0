@@ -27,12 +27,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Bot, BrainCircuit, LineChart, ShieldAlert } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
+import useLocalStorage from "@/hooks/use-local-storage";
+import { MOCK_RESOURCES, MOCK_REQUEST_HISTORY, MOCK_CAMPS } from "@/lib/data";
+import type { BloodResource, RequestHistoryItem, BloodCamp } from "@/lib/types";
+
 
 const formSchema = z.object({
   bloodType: z.string().min(1, "Blood type is required"),
-  historicalData: z.string().min(10, "Please provide some historical data."),
-  upcomingEvents: z.string().min(10, "Please describe upcoming events."),
 });
 
 const ForecastDisplay = ({ forecast, isLoading }: { forecast: SupplyForecast | null, isLoading: boolean }) => {
@@ -59,7 +60,7 @@ const ForecastDisplay = ({ forecast, isLoading }: { forecast: SupplyForecast | n
           <CardTitle className="flex items-center gap-2"><Bot /> AI Forecast</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">Submit the form to get an AI-powered supply forecast.</p>
+          <p className="text-muted-foreground">Select a blood type and click "Generate Forecast" to get an AI-powered supply forecast.</p>
         </CardContent>
       </Card>
     );
@@ -99,21 +100,52 @@ export default function ForecastingPage() {
   const [forecast, setForecast] = useState<SupplyForecast | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const [resources] = useLocalStorage<BloodResource[]>("resources", MOCK_RESOURCES);
+  const [requestHistory] = useLocalStorage<RequestHistoryItem[]>("requestHistory", MOCK_REQUEST_HISTORY);
+  const [camps] = useLocalStorage<BloodCamp[]>("camps", MOCK_CAMPS);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       bloodType: "",
-      historicalData: "Date,Supply,Demand\n2024-01-01,100,80\n2024-02-01,120,90\n2024-03-01,90,100",
-      upcomingEvents: "National holiday on 2024-07-04. Increased accidents expected. Major hospital scheduled surgeries on 2024-08-10.",
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     setForecast(null);
+
+    // Auto-generate data strings
+    const historicalData = `
+      Current Inventory for ${values.bloodType}:
+      ${resources
+        .filter(r => r.bloodType === values.bloodType)
+        .map(r => `${r.quantity} units at ${r.location}`)
+        .join('\n')
+      }
+
+      Recent Fulfilled Requests for ${values.bloodType}:
+      ${requestHistory
+        .filter(h => h.bloodType === values.bloodType && h.status === 'Fulfilled')
+        .map(h => `${h.quantity} units requested by ${h.hospital} on ${h.date}`)
+        .join('\n')
+      }
+    `;
+
+    const upcomingEvents = `
+      Upcoming Blood Donation Camps:
+      ${camps
+        .map(c => `${c.name} on ${c.date} at ${c.location}`)
+        .join('\n')
+      }
+    `;
+
     try {
-      const result = await getSupplyForecast(values);
+      const result = await getSupplyForecast({
+          ...values,
+          historicalData,
+          upcomingEvents
+      });
       setForecast(result);
     } catch (error) {
       toast({
@@ -160,32 +192,7 @@ export default function ForecastingPage() {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="historicalData"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Historical Data</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="Provide historical supply and demand data..." {...field} rows={6} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                 <FormField
-                  control={form.control}
-                  name="upcomingEvents"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Upcoming Events</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="Describe any upcoming holidays, events, or scheduled surgeries..." {...field} rows={4} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                
                 <Button type="submit" disabled={isLoading} className="w-full">
                   {isLoading ? 'Forecasting...' : 'Generate Forecast'}
                 </Button>
