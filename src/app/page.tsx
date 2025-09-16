@@ -75,84 +75,24 @@ function AboutUsContent() {
 }
 
 export default function WelcomePage() {
-  const { theme } = useTheme();
-
-  const lightVideoUrl = "https://media.istockphoto.com/id/1287414521/video/intravenous-medical-research-doctor-applying-tourniquet-on-black-guy-arm-before-taking-blood.mp4?s=mp4-640x640-is&k=20&c=z5dEHMc9-xR4jwxOv1Ir_fthm-DVEQmEvsLFeA2hlds=";
-  const darkVideoUrl = "https://cdn.pixabay.com/video/2023/11/18/189681-886028714_large.mp4";
-
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-      <video
-        key={theme} // Add key to force re-render on theme change
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source src={theme === 'light' ? lightVideoUrl : darkVideoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div className="absolute inset-0 bg-black/50 z-10"></div>
-      
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-center bg-background">
       <main className="text-center p-4 z-20 flex flex-col items-center">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-50 dark:to-neutral-400">
-          Welcome to Blood Bridge
+        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight text-foreground">
+          Blood Bridge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-neutral-800 dark:text-neutral-300 font-light max-w-2xl">
-          Bridging the gap between need & donor. Instantly connect with a network of hospitals and donors to save lives when it matters most.
+        <p className="mt-4 text-lg md:text-xl text-muted-foreground font-light max-w-2xl">
+          Bridging the gap between need & donor.
         </p>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
-          <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground transform hover:scale-105 transition-transform duration-300">
-            <CardHeader>
-              <CardTitle className="font-headline text-2xl">For Hospitals</CardTitle>
-              <CardDescription>Urgently need blood? Alert donors now.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/send-request">
-                <Button className="w-full" size="lg">
-                  Send an Alert <ArrowRight className="ml-2 h-5 w-5" />
+         <div className="mt-12">
+            <Link href="/dashboard">
+                <Button size="lg">
+                    Go to Dashboard <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </Link>
-            </CardContent>
-          </Card>
-          <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground transform hover:scale-105 transition-transform duration-300">
-            <CardHeader>
-              <CardTitle className="font-headline text-2xl">For Donors</CardTitle>
-              <CardDescription>See who needs your help right now.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/view-alerts">
-                <Button className="w-full" variant="secondary" size="lg">
-                  View Requests <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+            </Link>
         </div>
       </main>
-
-      <footer className="absolute bottom-4 text-black/70 dark:text-white/70 z-20 flex items-center gap-6">
-        <Sheet>
-            <SheetTrigger asChild>
-                <Link href="#" className="text-sm hover:text-foreground transition-colors">About Us</Link>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="bg-background/95 text-foreground border-t-primary/20 h-auto overflow-y-auto p-12">
-                <SheetHeader className="text-center max-w-4xl mx-auto">
-                <SheetTitle className="text-5xl font-bold font-headline mb-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 to-neutral-500 dark:from-neutral-100 dark:to-neutral-400">The Lifeline Connection</SheetTitle>
-                <SheetDescription className="text-muted-foreground text-lg">
-                    Blood Bridge was born from a simple yet powerful idea: to leverage technology to eliminate delays in emergency blood supply. Every second counts in a medical crisis, and our platform is designed to be the fastest, most efficient bridge between blood banks, hospitals, and volunteer donors.
-                </SheetDescription>
-                </SheetHeader>
-                <AboutUsContent />
-            </SheetContent>
-        </Sheet>
-
-        <Link href="/dashboard" className="text-sm hover:text-foreground transition-colors">
-          Go to Main Dashboard
-        </Link>
-      </footer>
     </div>
   );
 }
