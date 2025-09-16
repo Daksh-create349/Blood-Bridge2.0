@@ -45,20 +45,12 @@ export function UpdateStockDialog({ resource, onClose, onConfirm }: UpdateStockD
   }
 
   const handleLogin = () => {
-    // Mock authentication
-    if (password === 'password123') {
-      setIsLoggedIn(true);
-      toast({
-        title: "Login Successful",
-        description: `Welcome, admin for ${resource.location}.`,
-      });
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Login Failed",
-        description: "Invalid credentials. Please try again.",
-      });
-    }
+    // Mock authentication - always succeeds
+    setIsLoggedIn(true);
+    toast({
+      title: "Login Successful",
+      description: `Welcome, admin for ${resource.location}.`,
+    });
   };
 
   const handleConfirm = () => {
