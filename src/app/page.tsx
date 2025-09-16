@@ -95,11 +95,11 @@ export default function WelcomePage() {
       </video>
       <div className="absolute inset-0 bg-black/60 z-10"></div>
       
-      <main className="text-center text-white p-4 z-20 flex flex-col items-center">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+      <main className="text-center p-4 z-20 flex flex-col items-center">
+        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 dark:from-neutral-50 dark:to-neutral-400 from-neutral-900 to-neutral-600">
           Welcome to Blood Bridge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-neutral-300 font-light max-w-2xl">
+        <p className="mt-4 text-lg md:text-xl text-neutral-300 dark:text-neutral-300 text-neutral-800 font-light max-w-2xl">
           Bridging the gap between need & donor. Instantly connect with a network of hospitals and donors to save lives when it matters most.
         </p>
 
@@ -133,15 +133,15 @@ export default function WelcomePage() {
         </div>
       </main>
 
-      <footer className="absolute bottom-4 text-white/70 z-20 flex items-center gap-6">
+      <footer className="absolute bottom-4 text-white/70 dark:text-white/70 text-black/70 z-20 flex items-center gap-6">
         <Sheet>
             <SheetTrigger asChild>
-                <Link href="#" className="text-sm hover:text-white transition-colors">About Us</Link>
+                <Link href="#" className="text-sm hover:text-foreground transition-colors">About Us</Link>
             </SheetTrigger>
             <SheetContent side="bottom" className="bg-background/95 text-foreground border-t-primary/20 h-auto overflow-y-auto p-12">
                 <SheetHeader className="text-center max-w-4xl mx-auto">
-                <SheetTitle className="text-5xl font-bold font-headline mb-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">The Lifeline Connection</SheetTitle>
-                <SheetDescription className="text-neutral-300 text-lg">
+                <SheetTitle className="text-5xl font-bold font-headline mb-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 to-neutral-500 dark:from-neutral-100 dark:to-neutral-400">The Lifeline Connection</SheetTitle>
+                <SheetDescription className="text-muted-foreground text-lg">
                     Blood Bridge was born from a simple yet powerful idea: to leverage technology to eliminate delays in emergency blood supply. Every second counts in a medical crisis, and our platform is designed to be the fastest, most efficient bridge between blood banks, hospitals, and volunteer donors.
                 </SheetDescription>
                 </SheetHeader>
@@ -149,7 +149,7 @@ export default function WelcomePage() {
             </SheetContent>
         </Sheet>
 
-        <Link href="/dashboard" className="text-sm hover:text-white transition-colors">
+        <Link href="/dashboard" className="text-sm hover:text-foreground transition-colors">
           Go to Main Dashboard
         </Link>
       </footer>
