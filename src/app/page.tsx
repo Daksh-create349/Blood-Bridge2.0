@@ -20,7 +20,7 @@ function AboutUsContent() {
   return (
      <div className="py-10">
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-card/50">
+            <Card className="bg-background/80 border border-border/50">
                 <CardHeader>
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <HeartPulse className="h-6 w-6" />
@@ -33,7 +33,7 @@ function AboutUsContent() {
                 </p>
                 </CardContent>
             </Card>
-            <Card className="bg-card/50">
+            <Card className="bg-background/80 border border-border/50">
                 <CardHeader>
                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <Users className="h-6 w-6" />
@@ -46,7 +46,7 @@ function AboutUsContent() {
                 </p>
                 </CardContent>
             </Card>
-            <Card className="bg-card/50">
+            <Card className="bg-background/80 border border-border/50">
                 <CardHeader>
                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <BrainCircuit className="h-6 w-6" />
