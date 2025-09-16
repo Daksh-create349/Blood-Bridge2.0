@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { BloodResource, ResourceStatus } from "@/lib/types";
 import { MOCK_RESOURCES } from "@/lib/data";
 import useLocalStorage from "@/hooks/use-local-storage";
@@ -18,6 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { UpdateStockDialog } from "@/components/pages/dashboard/update-stock-dialog";
 import { AlertTriangle, Droplets, PackageCheck, Pencil } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const statusConfig: Record<ResourceStatus, {
   variant: 'destructive' | 'warning' | 'success';
@@ -64,6 +66,12 @@ export default function DashboardPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<ResourceStatus | "all">("all");
   const [selectedResource, setSelectedResource] = useState<BloodResource | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
 
   const filteredResources = resources.filter((resource) => {
     const searchMatch =
@@ -116,7 +124,11 @@ export default function DashboardPage() {
               <AlertTriangle className="h-5 w-5 text-destructive"/>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{criticalCount}</div>
+              {isClient ? (
+                <div className="text-2xl font-bold">{criticalCount}</div>
+              ) : (
+                <Skeleton className="h-8 w-10" />
+              )}
               <p className="text-xs text-muted-foreground">
                 Items needing immediate attention.
               </p>
@@ -128,7 +140,11 @@ export default function DashboardPage() {
               <AlertTriangle className="h-5 w-5 text-yellow-400"/>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{lowCount}</div>
+              {isClient ? (
+                <div className="text-2xl font-bold">{lowCount}</div>
+              ) : (
+                <Skeleton className="h-8 w-10" />
+              )}
               <p className="text-xs text-muted-foreground">
                 Items that may need restocking soon.
               </p>
@@ -160,13 +176,13 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredResources.map((resource) => (
+          {isClient ? filteredResources.map((resource) => (
             <ResourceCard 
               key={resource.id} 
               resource={resource} 
               onUpdateClick={handleUpdateClick} 
             />
-          ))}
+          )) : Array.from({length: 8}).map((_, i) => <Skeleton key={i} className="h-48 w-full" />)}
         </div>
       </div>
       <UpdateStockDialog 
