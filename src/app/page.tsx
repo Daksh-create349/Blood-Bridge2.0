@@ -98,7 +98,7 @@ export default function WelcomePage() {
         <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-gray-800 to-black dark:from-white dark:to-gray-300">
           Blood Bridge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl">
+        <p className="mt-4 text-lg md:text-xl text-gray-800 dark:text-gray-300 font-light max-w-2xl">
           Bridging the gap between need & donor.
         </p>
 
