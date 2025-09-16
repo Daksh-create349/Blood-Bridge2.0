@@ -28,7 +28,7 @@ function AboutUsContent() {
       icon: Users,
       title: "Build Community",
       description: "Connect donors, hospitals, and blood banks to build a strong, responsive community network.",
-      videoSrc: "https://cdn.pixabay.com/video/2019/11/04/28198-368220023_large.mp4"
+      videoSrc: "https://media.istockphoto.com/id/1497158922/video/close-up-shot-of-two-blood-bags-from-donor-hanging-on-the-stand-in-donation-center-or.mp4?s=mp4-640x640-is&k=20&c=RYDBYqDnXIblzhLpnLjTzM34HUdZhmv-vfY5dKoHT7Q="
     },
     {
       icon: BrainCircuit,
