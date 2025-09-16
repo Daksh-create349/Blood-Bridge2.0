@@ -93,13 +93,13 @@ export default function WelcomePage() {
         <source src={theme === 'light' ? lightVideoUrl : darkVideoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div className="absolute inset-0 bg-black/60 z-10"></div>
+      <div className="absolute inset-0 bg-black/50 z-10"></div>
       
       <main className="text-center p-4 z-20 flex flex-col items-center">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 dark:from-neutral-50 dark:to-neutral-400 from-neutral-900 to-neutral-600">
+        <h1 className="font-headline text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-900 to-neutral-600 dark:from-neutral-50 dark:to-neutral-400">
           Welcome to Blood Bridge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-neutral-300 dark:text-neutral-300 text-neutral-800 font-light max-w-2xl">
+        <p className="mt-4 text-lg md:text-xl text-neutral-800 dark:text-neutral-300 font-light max-w-2xl">
           Bridging the gap between need & donor. Instantly connect with a network of hospitals and donors to save lives when it matters most.
         </p>
 
@@ -133,7 +133,7 @@ export default function WelcomePage() {
         </div>
       </main>
 
-      <footer className="absolute bottom-4 text-white/70 dark:text-white/70 text-black/70 z-20 flex items-center gap-6">
+      <footer className="absolute bottom-4 text-black/70 dark:text-white/70 z-20 flex items-center gap-6">
         <Sheet>
             <SheetTrigger asChild>
                 <Link href="#" className="text-sm hover:text-foreground transition-colors">About Us</Link>
