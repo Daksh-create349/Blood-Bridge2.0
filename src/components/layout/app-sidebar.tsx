@@ -38,8 +38,6 @@ const aiTools = [
   { href: "/forecasting", label: "AI Supply Forecasting", icon: BrainCircuit },
 ];
 
-const homeLink = { href: "/", label: "Welcome Page", icon: Home };
-
 function SidebarNav() {
     const pathname = usePathname();
     const isLinkActive = (href: string) => pathname === href;
@@ -89,17 +87,6 @@ function SidebarNav() {
             </AccordionItem>
           </Accordion>
         </div>
-
-        <ul className="space-y-1 border-t border-border pt-4">
-          <li>
-            <Link href={homeLink.href}>
-              <Button variant="ghost" className="w-full justify-start">
-                <homeLink.icon className="mr-2 h-4 w-4" />
-                {homeLink.label}
-              </Button>
-            </Link>
-          </li>
-        </ul>
       </nav>
     );
 }
@@ -107,14 +94,14 @@ function SidebarNav() {
 export default function AppSidebar() {
   return (
     <aside className="w-64 flex-shrink-0 border-r border-border bg-card p-4 flex flex-col">
-      <div className="flex items-center gap-3 px-2 mb-6">
-        <div className="text-primary">
+      <Link href="/dashboard" className="flex items-center gap-3 px-2 mb-6 focus:outline-none group">
+        <div className="text-primary group-hover:scale-110 transition-transform">
           <BloodDropIcon className="h-8 w-8" />
         </div>
-        <h2 className="text-xl font-bold font-headline text-foreground">
+        <h2 className="text-xl font-bold font-headline text-foreground group-hover:text-primary transition-colors">
           Blood Bridge
         </h2>
-      </div>
+      </Link>
       <SidebarNav />
     </aside>
   );

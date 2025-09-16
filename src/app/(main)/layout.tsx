@@ -1,4 +1,5 @@
 import AppSidebar from '@/components/layout/app-sidebar';
+import { DonationAssistantWidget } from '@/components/layout/donation-assistant-widget';
 
 export default function MainLayout({
   children,
@@ -11,6 +12,7 @@ export default function MainLayout({
       <main className="flex-1 flex flex-col overflow-y-auto">
         {children}
       </main>
+      <DonationAssistantWidget />
     </div>
   );
 }
