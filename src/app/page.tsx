@@ -17,48 +17,57 @@ import { BrainCircuit, HeartPulse, Users } from 'lucide-react';
 
 
 function AboutUsContent() {
+  const features = [
+    {
+      icon: HeartPulse,
+      title: "Save Lives",
+      description: "Reduce response times and save lives during critical emergencies with real-time alerts.",
+      videoSrc: "https://cdn.pixabay.com/video/2021/08/04/81442-573243959_large.mp4"
+    },
+    {
+      icon: Users,
+      title: "Build Community",
+      description: "Connect donors, hospitals, and blood banks to build a strong, responsive community network.",
+      videoSrc: "https://cdn.pixabay.com/video/2019/11/04/28198-368220023_large.mp4"
+    },
+    {
+      icon: BrainCircuit,
+      title: "Innovate with AI",
+      description: "Use AI to provide intelligent forecasting and request analysis to stay ahead of shortages.",
+      videoSrc: "https://cdn.pixabay.com/video/2024/02/06/198751-910408544_large.mp4"
+    }
+  ];
+
   return (
-     <div className="py-10">
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-background/80 border border-border/50">
-                <CardHeader>
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <HeartPulse className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-lg text-foreground">Save Lives</CardTitle>
-                </CardHeader>
-                <CardContent>
-                <p className="text-muted-foreground text-sm">
-                    Reduce response times and save lives during critical emergencies.
-                </p>
-                </CardContent>
+     <div className="py-12">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {features.map((feature, index) => (
+            <Card key={index} className="bg-card/50 backdrop-blur-lg border-white/10 rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-in fade-in slide-in-from-bottom-5" style={{ animationDelay: `${index * 150}ms`}}>
+              <div className="relative h-40">
+                  <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                  >
+                      <source src={feature.videoSrc} type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 bg-black/50 z-10"></div>
+                  <div className="relative z-20 flex items-center justify-center h-full">
+                       <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 text-primary border-2 border-primary/50">
+                          <feature.icon className="h-8 w-8" />
+                      </div>
+                  </div>
+              </div>
+              <CardHeader className="text-center">
+                  <CardTitle className="text-2xl text-foreground font-headline">{feature.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                  <p className="text-muted-foreground">{feature.description}</p>
+              </CardContent>
             </Card>
-            <Card className="bg-background/80 border border-border/50">
-                <CardHeader>
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Users className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-lg text-foreground">Build Community</CardTitle>
-                </CardHeader>
-                <CardContent>
-                <p className="text-muted-foreground text-sm">
-                    Connect donors, hospitals, and blood banks to build a strong, responsive community network.
-                </p>
-                </CardContent>
-            </Card>
-            <Card className="bg-background/80 border border-border/50">
-                <CardHeader>
-                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <BrainCircuit className="h-6 w-6" />
-                </div>
-                <CardTitle className="text-lg text-foreground">Innovate with AI</CardTitle>
-                </CardHeader>
-                <CardContent>
-                <p className="text-muted-foreground text-sm">
-                    Use AI to provide intelligent forecasting and request analysis to stay ahead of shortages.
-                </p>
-                </CardContent>
-            </Card>
+          ))}
         </div>
     </div>
   )
@@ -123,8 +132,8 @@ export default function WelcomePage() {
                 <Link href="#" className="text-sm hover:text-white transition-colors">About Us</Link>
             </SheetTrigger>
             <SheetContent side="bottom" className="bg-background/95 text-foreground border-t-primary/20 h-auto overflow-y-auto p-12">
-                <SheetHeader className="text-center max-w-3xl mx-auto">
-                <SheetTitle className="text-4xl font-bold font-headline mb-4">The Lifeline Connection</SheetTitle>
+                <SheetHeader className="text-center max-w-4xl mx-auto">
+                <SheetTitle className="text-5xl font-bold font-headline mb-4 bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">The Lifeline Connection</SheetTitle>
                 <SheetDescription className="text-neutral-300 text-lg">
                     Blood Bridge was born from a simple yet powerful idea: to leverage technology to eliminate delays in emergency blood supply. Every second counts in a medical crisis, and our platform is designed to be the fastest, most efficient bridge between blood banks, hospitals, and volunteer donors.
                 </SheetDescription>
