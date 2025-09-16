@@ -18,53 +18,49 @@ import { BrainCircuit, HeartPulse, Users } from 'lucide-react';
 
 function AboutUsContent() {
   return (
-    <section className="w-full z-20 py-20 px-4 text-white text-center">
-        <h2 className="text-4xl font-bold font-headline mb-4">The Lifeline Connection</h2>
-        <p className="text-neutral-300 max-w-3xl mx-auto mb-12">
-            Blood Bridge was born from a simple yet powerful idea: to leverage technology to eliminate delays in emergency blood supply. Every second counts in a medical crisis, and our platform is designed to be the fastest, most efficient bridge between blood banks, hospitals, and volunteer donors.
-        </p>
+     <div className="py-10">
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground text-center">
-             <CardHeader>
-              <div className="mx-auto bg-primary/20 text-primary p-3 rounded-full w-fit">
-                <HeartPulse className="h-8 w-8" />
-              </div>
-              <CardTitle className="mt-4">Save Lives</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Reduce response times and save lives during critical emergencies.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground text-center">
-            <CardHeader>
-               <div className="mx-auto bg-primary/20 text-primary p-3 rounded-full w-fit">
-                <Users className="h-8 w-8" />
-              </div>
-              <CardTitle className="mt-4">Build Community</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Connect donors, hospitals, and blood banks to build a strong, responsive community network.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground text-center">
-            <CardHeader>
-              <div className="mx-auto bg-primary/20 text-primary p-3 rounded-full w-fit">
-                <BrainCircuit className="h-8 w-8" />
-              </div>
-              <CardTitle className="mt-4">Innovate with AI</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Use AI to provide intelligent forecasting and request analysis to stay ahead of shortages.
-              </p>
-            </CardContent>
-          </Card>
+            <Card className="bg-transparent border-0 shadow-none text-left">
+                <CardHeader className="p-0">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+                    <HeartPulse className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-lg text-foreground">Save Lives</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0 mt-2">
+                <p className="text-muted-foreground text-sm">
+                    Reduce response times and save lives during critical emergencies.
+                </p>
+                </CardContent>
+            </Card>
+            <Card className="bg-transparent border-0 shadow-none text-left">
+                <CardHeader className="p-0">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+                    <Users className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-lg text-foreground">Build Community</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0 mt-2">
+                <p className="text-muted-foreground text-sm">
+                    Connect donors, hospitals, and blood banks to build a strong, responsive community network.
+                </p>
+                </CardContent>
+            </Card>
+            <Card className="bg-transparent border-0 shadow-none text-left">
+                <CardHeader className="p-0">
+                 <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-primary">
+                    <BrainCircuit className="h-6 w-6" />
+                </div>
+                <CardTitle className="text-lg text-foreground">Innovate with AI</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0 mt-2">
+                <p className="text-muted-foreground text-sm">
+                    Use AI to provide intelligent forecasting and request analysis to stay ahead of shortages.
+                </p>
+                </CardContent>
+            </Card>
         </div>
-      </section>
+    </div>
   )
 }
 
@@ -126,54 +122,14 @@ export default function WelcomePage() {
             <SheetTrigger asChild>
                 <Link href="#" className="text-sm hover:text-white transition-colors">About Us</Link>
             </SheetTrigger>
-            <SheetContent side="bottom" className="bg-background/90 text-foreground border-t-0 h-4/5 overflow-y-auto">
-                <SheetHeader className="text-left">
+            <SheetContent side="bottom" className="bg-background/95 text-foreground border-t-primary/20 h-auto overflow-y-auto p-12">
+                <SheetHeader className="text-center max-w-3xl mx-auto">
                 <SheetTitle className="text-4xl font-bold font-headline mb-4">The Lifeline Connection</SheetTitle>
-                <SheetDescription className="text-neutral-300 max-w-3xl mb-12">
+                <SheetDescription className="text-neutral-300 text-lg">
                     Blood Bridge was born from a simple yet powerful idea: to leverage technology to eliminate delays in emergency blood supply. Every second counts in a medical crisis, and our platform is designed to be the fastest, most efficient bridge between blood banks, hospitals, and volunteer donors.
                 </SheetDescription>
                 </SheetHeader>
-                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto py-10">
-                    <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground text-center">
-                        <CardHeader>
-                        <div className="mx-auto bg-primary/20 text-primary p-3 rounded-full w-fit">
-                            <HeartPulse className="h-8 w-8" />
-                        </div>
-                        <CardTitle className="mt-4">Save Lives</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                        <p className="text-muted-foreground">
-                            Reduce response times and save lives during critical emergencies.
-                        </p>
-                        </CardContent>
-                    </Card>
-                    <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground text-center">
-                        <CardHeader>
-                        <div className="mx-auto bg-primary/20 text-primary p-3 rounded-full w-fit">
-                            <Users className="h-8 w-8" />
-                        </div>
-                        <CardTitle className="mt-4">Build Community</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                        <p className="text-muted-foreground">
-                            Connect donors, hospitals, and blood banks to build a strong, responsive community network.
-                        </p>
-                        </CardContent>
-                    </Card>
-                    <Card className="bg-card/80 backdrop-blur-sm border-white/10 text-card-foreground text-center">
-                        <CardHeader>
-                        <div className="mx-auto bg-primary/20 text-primary p-3 rounded-full w-fit">
-                            <BrainCircuit className="h-8 w-8" />
-                        </div>
-                        <CardTitle className="mt-4">Innovate with AI</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                        <p className="text-muted-foreground">
-                            Use AI to provide intelligent forecasting and request analysis to stay ahead of shortages.
-                        </p>
-                        </CardContent>
-                    </Card>
-                    </div>
+                <AboutUsContent />
             </SheetContent>
         </Sheet>
 
