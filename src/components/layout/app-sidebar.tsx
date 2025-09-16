@@ -12,6 +12,7 @@ import {
   Send,
   Users,
   MapPin,
+  Cog,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -86,6 +87,18 @@ function SidebarNav() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </div>
+         <div className="space-y-1">
+            <p className="px-2 text-xs font-semibold text-muted-foreground tracking-wider uppercase">App</p>
+            <Link href="/settings">
+                <Button
+                    variant={isLinkActive('/settings') ? 'secondary' : 'ghost'}
+                    className="w-full justify-start"
+                >
+                    <Cog className="mr-2 h-4 w-4" />
+                    Settings
+                </Button>
+            </Link>
         </div>
       </nav>
     );

@@ -1,13 +1,13 @@
 
 "use client";
 
-import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { Inter, Poppins, Space_Grotesk } from 'next/font/google';
 import { useState, useEffect } from 'react';
 import SplashScreen from '@/components/layout/splash-screen';
 import { usePathname } from 'next/navigation';
+import { ThemeProvider } from '@/components/providers/theme-provider';
 
 // export const metadata: Metadata = {
 //   title: 'Blood Bridge',
@@ -52,10 +52,17 @@ export default function RootLayout({
   }, [pathname]);
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${poppins.variable} font-body antialiased`}>
-        {loading ? <SplashScreen /> : children}
-        <Toaster />
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+        >
+            {loading ? <SplashScreen /> : children}
+            <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
