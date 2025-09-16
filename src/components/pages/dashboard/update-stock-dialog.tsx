@@ -83,7 +83,6 @@ export function UpdateStockDialog({ resource, onClose, onConfirm }: UpdateStockD
               </DialogTitle>
               <DialogDescription>
                 Please log in to update stock for <span className="font-bold text-primary">{resource.location}</span>.
-                (Hint: email ends with @hospital.admin, password is 'password123')
               </DialogDescription>
             </DialogHeader>
             <div className="py-4 space-y-4">
