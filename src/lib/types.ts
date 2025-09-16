@@ -42,3 +42,12 @@ export interface BloodBank {
   name: string;
   location: string;
 }
+
+export interface BloodCamp {
+    id: string;
+    name: string;
+    location: string;
+    date: string;
+    organizer: string;
+    timings: string;
+}

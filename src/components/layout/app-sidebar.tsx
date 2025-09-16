@@ -11,6 +11,7 @@ import {
   LayoutGrid,
   Send,
   Users,
+  MapPin,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,6 +29,7 @@ const menuItems = [
   { href: "/send-request", label: "Send Request", icon: Send },
   { href: "/view-alerts", label: "Active Requests", icon: BellRing },
   { href: "/request-history", label: "Request History", icon: History },
+  { href: "/camps", label: "Donation Camps", icon: MapPin },
   { href: "/analytics", label: "Analytics", icon: BarChart },
   { href: "/donors", label: "Donors", icon: Users },
 ];

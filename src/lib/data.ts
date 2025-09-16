@@ -1,4 +1,4 @@
-import type { BloodResource, Donor, UrgentRequest, BloodBank, RequestHistoryItem } from './types';
+import type { BloodResource, Donor, UrgentRequest, BloodBank, RequestHistoryItem, BloodCamp } from './types';
 
 export const MOCK_RESOURCES: BloodResource[] = [
   { id: '1', bloodType: 'A+', quantity: 50, location: 'D Y Patil Hospital, Nerul', status: 'Available' },
@@ -118,4 +118,55 @@ export const MOCK_BLOOD_BANKS: BloodBank[] = [
     { id: 'bb2', name: 'Uptown Donation Center', location: 'Uptown' },
     { id: 'bb3', name: 'Suburban Community Bank', location: 'Suburbia' },
     { id: 'bb4', name: 'Red Cross Central', location: 'City Center' },
+];
+
+export const MOCK_CAMPS: BloodCamp[] = [
+  {
+    id: 'camp1',
+    name: 'Mega Blood Donation Drive',
+    location: 'Inorbit Mall, Vashi, Navi Mumbai',
+    date: '2024-08-15',
+    organizer: 'Lions Club of Vashi',
+    timings: '10:00 AM - 05:00 PM',
+  },
+  {
+    id: 'camp2',
+    name: 'Community Health & Blood Donation',
+    location: 'Seawoods Grand Central, Seawoods, Navi Mumbai',
+    date: '2024-08-20',
+    organizer: 'Rotary Club of Navi Mumbai',
+    timings: '11:00 AM - 06:00 PM',
+  },
+  {
+    id: 'camp3',
+    name: 'NSS Blood Donation Camp',
+    location: 'D.Y. Patil University, Nerul, Navi Mumbai',
+    date: '2024-09-01',
+    organizer: 'NSS Unit, D.Y. Patil',
+    timings: '09:00 AM - 04:00 PM',
+  },
+   {
+    id: 'camp4',
+    name: 'Annual Donation Camp',
+    location: 'Urban Haat, CBD Belapur, Navi Mumbai',
+    date: '2024-09-10',
+    organizer: 'Navi Mumbai Municipal Corporation',
+    timings: '10:00 AM - 05:00 PM',
+  },
+  {
+    id: 'camp5',
+    name: 'Life Savers Blood Camp',
+    location: 'Wonders Park, Nerul, Navi Mumbai',
+    date: '2024-09-22',
+    organizer: 'Give Blood, Give Life Foundation',
+    timings: '09:00 AM - 03:00 PM',
+  },
+  {
+    id: 'camp6',
+    name: 'Pre-Festive Season Donation Drive',
+    location: 'Kharghar Valley Golf Course, Kharghar',
+    date: '2024-10-05',
+    organizer: 'Tata Memorial Hospital',
+    timings: '11:00 AM - 04:00 PM',
+  },
 ];
